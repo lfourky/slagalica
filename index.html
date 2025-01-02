@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skocko</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <div class="info">
+        <h3>Pronađi tačnu kombinaciju</h3>
+      </div>
+
+      <div id="board"></div>
+
+      <div id="selection">
+        <button class="symbol" data-value="heart" style="color: red">
+          <i class="fas fa-heart"></i>
+        </button>
+        <button class="symbol" data-value="star" style="color: orange">
+          <i class="fas fa-star"></i>
+        </button>
+        <button class="symbol" data-value="circle" style="color: black">
+          <i class="fas fa-circle"></i>
+        </button>
+        <button class="symbol" data-value="square" style="color: green">
+          <i class="fas fa-square"></i>
+        </button>
+        <button class="symbol" data-value="diamond" style="color: blue">
+          <i class="fas fa-gem"></i>
+        </button>
+        <button class="symbol" data-value="star-outline" style="color: yellow">
+          <i class="far fa-star"></i>
+        </button>
+      </div>
+
+      <div class="button-container">
+        <button id="submit">Potvrdi</button>
+        <button id="refresh"><i class="fas fa-sync-alt"></i></button>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
