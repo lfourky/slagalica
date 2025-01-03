@@ -5,6 +5,7 @@ let attempt = 0;
 document.addEventListener("DOMContentLoaded", () => {
   initializeBoard();
   addEventListeners();
+  updateRowStates(); // Highlight initial row
 });
 
 function initializeBoard() {
@@ -12,7 +13,7 @@ function initializeBoard() {
   board.innerHTML = "";
   for (let i = 0; i < 6; i++) {
     const row = document.createElement("div");
-    row.className = "row";
+    row.className = "row inactive"; // All rows start as inactive
 
     for (let j = 0; j < 4; j++) {
       const slot = document.createElement("div");
@@ -97,6 +98,7 @@ function checkGuess() {
     endGame();
   } else {
     attempt++;
+    updateRowStates(); // Update row visibility
   }
 }
 
@@ -120,6 +122,18 @@ function calculateFeedback() {
   });
 
   return { correct, misplaced };
+}
+
+function updateRowStates() {
+  document.querySelectorAll(".row").forEach((row, index) => {
+    if (index < attempt) {
+      row.classList.remove("inactive"); // Keep tried rows visible
+    } else if (index === attempt) {
+      row.classList.remove("inactive"); // Highlight current row
+    } else {
+      row.classList.add("inactive"); // Gray out rows not yet reachable
+    }
+  });
 }
 
 function endGame() {
@@ -148,4 +162,5 @@ function resetGame() {
   currentGuess = [];
   attempt = 0;
   initializeBoard();
+  updateRowStates(); // Reset row visibility
 }
