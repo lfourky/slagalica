@@ -141,3 +141,54 @@ button#refresh {
 button#refresh:hover {
   color: #c9302c;
 }
+
+/* Responsive Adjustments */
+@media (max-width: 600px) {
+  .game-container {
+    width: 95%;
+    padding: 15px;
+  }
+
+  #board {
+    margin-bottom: 20px; /* Add space between board and selection */
+  }
+
+  #selection {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 5px;
+    margin-top: 30px; /* Create spacing */
+  }
+
+  .guess-slot {
+    width: 40px;
+    height: 40px;
+    font-size: 1.2em;
+  }
+
+  .feedback-slot {
+    width: 12px;
+    height: 12px;
+  }
+
+  button.symbol {
+    font-size: 1.5em;
+  }
+
+  .button-container {
+    margin-top: 0;
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  button#submit {
+    width: 50%;
+    font-size: 0.9em;
+  }
+
+  button#refresh {
+    font-size: 1.2em;
+  }
+}
