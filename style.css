@@ -152,6 +152,22 @@ button#refresh:hover {
 
   #board {
     margin-bottom: 20px; /* Add space between board and selection */
+    gap: 10px; /* Increase gap between rows for better spacing */
+  }
+
+  .row {
+    gap: 10px; /* Increase spacing between guess slots */
+  }
+
+  .guess-slot {
+    width: 70px; /* Proportional increase in size */
+    height: 70px;
+    font-size: 1.6em;
+  }
+
+  .feedback-slot {
+    width: 15px;
+    height: 15px;
   }
 
   #selection {
@@ -159,23 +175,12 @@ button#refresh:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 5px;
-    margin-top: 30px; /* Create spacing */
-  }
-
-  .guess-slot {
-    width: 40px;
-    height: 40px;
-    font-size: 1.2em;
-  }
-
-  .feedback-slot {
-    width: 12px;
-    height: 12px;
+    gap: 15px; /* Increased gap for better spacing */
+    margin-top: 45px; /* Create spacing */
   }
 
   button.symbol {
-    font-size: 1.5em;
+    font-size: 2.5em; /* Proportional increase in symbol size */
   }
 
   .button-container {
@@ -185,11 +190,12 @@ button#refresh:hover {
   }
 
   button#submit {
-    width: 50%;
+    width: 45%; /* Adjust button size */
+    padding: 8px 12px;
     font-size: 0.9em;
   }
 
   button#refresh {
-    font-size: 1.2em;
+    font-size: 1.3em;
   }
 }
