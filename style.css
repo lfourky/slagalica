@@ -175,7 +175,7 @@ button#refresh:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 15px; /* Increased gap for better spacing */
+    gap: 10px; /* Increased gap for better spacing */
     margin-top: 45px; /* Create spacing */
   }
 
