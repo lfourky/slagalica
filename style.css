@@ -88,7 +88,7 @@ body {
   flex-direction: column;
   gap: 8px;
   position: absolute;
-  right: 2px;
+  right: 10px; /* Adjusted alignment */
   top: 50%;
   transform: translateY(-50%);
 }
@@ -107,8 +107,8 @@ button.symbol:hover {
 
 .button-container {
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
   position: relative;
   margin-top: 20px;
 }
@@ -133,8 +133,8 @@ button#refresh {
   color: #d9534f;
   font-size: 1.5em;
   cursor: pointer;
-  position: absolute;
-  right: 0;
+  margin-left: 10px; /* Spacing between submit and refresh buttons */
+  position: relative;
 }
 
 button#refresh:hover {
