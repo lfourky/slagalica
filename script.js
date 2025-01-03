@@ -1,11 +1,12 @@
 let solution = generateSolution();
 let currentGuess = [];
 let attempt = 0;
+let gameEnded = false;
 
 document.addEventListener("DOMContentLoaded", () => {
   initializeBoard();
   addEventListeners();
-  updateRowStates(); // Highlight initial row
+  updateRowStates(); // Highlight the first row
 });
 
 function initializeBoard() {
@@ -47,7 +48,7 @@ function generateSolution() {
 function addEventListeners() {
   document.querySelectorAll(".symbol").forEach((symbol) => {
     symbol.addEventListener("click", () => {
-      if (currentGuess.length < 4) {
+      if (!gameEnded && currentGuess.length < 4) {
         currentGuess.push(symbol.dataset.value);
         renderGuess();
       }
@@ -55,7 +56,7 @@ function addEventListeners() {
   });
 
   document.getElementById("submit").addEventListener("click", () => {
-    if (currentGuess.length === 4) {
+    if (!gameEnded && currentGuess.length === 4) {
       checkGuess();
       currentGuess = [];
     }
@@ -70,6 +71,14 @@ function renderGuess() {
   const row = document.querySelectorAll(".row")[attempt];
   const slots = row.querySelectorAll(".guess-slot");
 
+  // Clear all slots first
+  slots.forEach((slot) => {
+    slot.innerHTML = "";
+    slot.style.color = "";
+    slot.onclick = null; // Remove any previous click handlers
+  });
+
+  // Render the current guesses and add a click handler to delete the last input
   currentGuess.forEach((guess, index) => {
     const matchingSymbol = document.querySelector(
       `.symbol[data-value="${guess}"]`
@@ -77,6 +86,14 @@ function renderGuess() {
     if (matchingSymbol) {
       slots[index].innerHTML = matchingSymbol.innerHTML;
       slots[index].style.color = window.getComputedStyle(matchingSymbol).color;
+
+      // Only add a delete handler to the last input
+      if (index === currentGuess.length - 1) {
+        slots[index].onclick = () => {
+          currentGuess.pop(); // Remove the last guessed symbol
+          renderGuess(); // Re-render the row
+        };
+      }
     }
   });
 }
@@ -95,10 +112,11 @@ function checkGuess() {
   );
 
   if (feedback.correct.length === 4 || attempt === 5) {
+    gameEnded = true;
     endGame();
   } else {
     attempt++;
-    updateRowStates(); // Update row visibility
+    updateRowStates(); // Update active row
   }
 }
 
@@ -161,6 +179,7 @@ function resetGame() {
   solution = generateSolution();
   currentGuess = [];
   attempt = 0;
+  gameEnded = false;
   initializeBoard();
   updateRowStates(); // Reset row visibility
 }
