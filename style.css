@@ -58,6 +58,17 @@ body {
   justify-content: center;
   align-items: center;
   font-size: 1.5em;
+  position: relative;
+  box-sizing: border-box; /* Prevent layout shift on border addition */
+}
+
+.guess-slot.last {
+  cursor: pointer;
+  border: 2px solid #ffc300; /* Highlight last input */
+}
+
+.guess-slot.last:hover {
+  border: 2px solid #ffa500; /* Darker border on hover */
 }
 
 .feedback-container {
