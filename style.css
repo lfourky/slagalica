@@ -41,12 +41,12 @@ body {
   display: flex;
   align-items: center;
   gap: 5px;
-  opacity: 1; /* Default: fully visible */
+  opacity: 1;
   transition: opacity 0.3s ease;
 }
 
 .row.inactive {
-  opacity: 0.5; /* Grayed-out for unreachable rows */
+  opacity: 0.5;
 }
 
 .guess-slot {
@@ -60,16 +60,16 @@ body {
   align-items: center;
   font-size: 1.5em;
   position: relative;
-  box-sizing: border-box; /* Prevent layout shift on border addition */
+  box-sizing: border-box;
 }
 
 .guess-slot.last {
   cursor: pointer;
-  border: 2px solid #ffc300; /* Highlight last input */
+  border: 2px solid #ffc300;
 }
 
 .guess-slot.last:hover {
-  border: 2px solid #ffa500; /* Darker border on hover */
+  border: 2px solid #ffa500;
 }
 
 .feedback-container {
@@ -89,7 +89,7 @@ body {
   flex-direction: column;
   gap: 8px;
   position: absolute;
-  right: 10px; /* Adjusted alignment */
+  right: 10px;
   top: 50%;
   transform: translateY(-50%);
 }
@@ -108,42 +108,47 @@ button.symbol:hover {
 
 .button-container {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   position: relative;
   margin-top: 20px;
 }
 
 button#submit {
-  background: #286090;
+  background: linear-gradient(to right, #4caf50, #43a047);
   color: #fff;
-  padding: 10px 20px;
+  padding: 12px 24px;
   border: none;
-  border-radius: 5px;
-  width: 50%;
-  cursor: pointer;
+  border-radius: 8px;
   font-size: 1em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  width: 70%;
 }
 
 button#submit:hover {
-  background: #204d74;
+  background: linear-gradient(to right, #43a047, #388e3c);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.3);
+}
+
+button#submit:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
 button#refresh {
   background: none;
   border: none;
-  color: #d9534f;
+  color: white;
   font-size: 1.5em;
   cursor: pointer;
-  margin-left: 10px; /* Spacing between submit and refresh buttons */
+  margin-left: 10px;
   position: relative;
 }
 
-button#refresh:hover {
-  color: #c9302c;
-}
-
-/* Responsive Adjustments */
 @media (max-width: 600px) {
   .game-container {
     width: 95%;
@@ -151,16 +156,16 @@ button#refresh:hover {
   }
 
   #board {
-    margin-bottom: 20px; /* Add space between board and selection */
-    gap: 10px; /* Increase gap between rows for better spacing */
+    margin-bottom: 20px;
+    gap: 10px;
   }
 
   .row {
-    gap: 10px; /* Increase spacing between guess slots */
+    gap: 10px;
   }
 
   .guess-slot {
-    width: 70px; /* Proportional increase in size */
+    width: 70px;
     height: 70px;
     font-size: 1.6em;
   }
@@ -175,12 +180,12 @@ button#refresh:hover {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    gap: 10px; /* Increased gap for better spacing */
-    margin-top: 45px; /* Create spacing */
+    gap: 10px;
+    margin-top: 45px;
   }
 
   button.symbol {
-    font-size: 2.5em; /* Proportional increase in symbol size */
+    font-size: 2.5em;
   }
 
   .button-container {
@@ -190,12 +195,27 @@ button#refresh:hover {
   }
 
   button#submit {
-    width: 45%; /* Adjust button size */
-    padding: 8px 12px;
+    padding: 10px 20px;
     font-size: 0.9em;
   }
 
   button#refresh {
     font-size: 1.3em;
+  }
+}
+
+@media (max-width: 430px) {
+  .row {
+    gap: 4px;
+  }
+
+  #selection {
+    gap: 5px;
+  }
+
+  .guess-slot {
+    width: 17vw;
+    height: 17vw;
+    font-size: 1em;
   }
 }

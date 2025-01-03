@@ -6,8 +6,8 @@ let gameEnded = false;
 document.addEventListener("DOMContentLoaded", () => {
   initializeBoard();
   addEventListeners();
-  updateRowStates(); // Highlight the first row
-  updateSubmitButtonState(); // Initial button state
+  updateRowStates();
+  updateSubmitButtonState();
 });
 
 function initializeBoard() {
@@ -52,7 +52,7 @@ function addEventListeners() {
       if (!gameEnded && currentGuess.length < 4) {
         currentGuess.push(symbol.dataset.value);
         renderGuess();
-        updateSubmitButtonState(); // Update button state after a new guess
+        updateSubmitButtonState();
       }
     });
   });
@@ -61,7 +61,7 @@ function addEventListeners() {
     if (!gameEnded && currentGuess.length === 4) {
       checkGuess();
       currentGuess = [];
-      updateSubmitButtonState(); // Update button state after submission
+      updateSubmitButtonState();
     }
   });
 
@@ -74,15 +74,13 @@ function renderGuess() {
   const row = document.querySelectorAll(".row")[attempt];
   const slots = row.querySelectorAll(".guess-slot");
 
-  // Clear all slots first
   slots.forEach((slot) => {
     slot.innerHTML = "";
     slot.style.color = "";
-    slot.onclick = null; // Remove any previous click handlers
-    slot.classList.remove("last"); // Remove last-input highlight
+    slot.onclick = null;
+    slot.classList.remove("last");
   });
 
-  // Render the current guesses
   currentGuess.forEach((guess, index) => {
     const matchingSymbol = document.querySelector(
       `.symbol[data-value="${guess}"]`
@@ -91,14 +89,13 @@ function renderGuess() {
       slots[index].innerHTML = matchingSymbol.innerHTML;
       slots[index].style.color = window.getComputedStyle(matchingSymbol).color;
 
-      // Add delete handler and highlight to the last input
       if (index === currentGuess.length - 1) {
         slots[index].onclick = () => {
-          currentGuess.pop(); // Remove the last guessed symbol
-          renderGuess(); // Re-render the row
-          updateSubmitButtonState(); // Update button state after deletion
+          currentGuess.pop();
+          renderGuess();
+          updateSubmitButtonState();
         };
-        slots[index].classList.add("last"); // Highlight the last input
+        slots[index].classList.add("last");
       }
     }
   });
@@ -107,15 +104,15 @@ function renderGuess() {
 function updateSubmitButtonState() {
   const submitButton = document.getElementById("submit");
   if (currentGuess.length === 4) {
-    submitButton.style.color = "#fff"; // Enable button text
-    submitButton.style.background = "#286090"; // Active background
-    submitButton.style.cursor = "pointer"; // Enable pointer cursor
-    submitButton.disabled = false; // Allow submission
+    submitButton.style.color = "#fff";
+    submitButton.style.background = "#286090";
+    submitButton.style.cursor = "pointer";
+    submitButton.disabled = false;
   } else {
-    submitButton.style.color = "#ccc"; // Gray out text
-    submitButton.style.background = "#444"; // Grayed-out background
-    submitButton.style.cursor = "not-allowed"; // Disabled cursor
-    submitButton.disabled = true; // Disable submission
+    submitButton.style.color = "#ccc";
+    submitButton.style.background = "#444";
+    submitButton.style.cursor = "not-allowed";
+    submitButton.disabled = true;
   }
 }
 
@@ -124,7 +121,6 @@ function checkGuess() {
   const row = document.querySelectorAll(".row")[attempt];
   const feedbackSlots = row.querySelectorAll(".feedback-slot");
 
-  // Update feedback slots
   feedback.correct.forEach(
     (_, index) => (feedbackSlots[index].style.background = "red")
   );
@@ -134,7 +130,6 @@ function checkGuess() {
         "yellow")
   );
 
-  // Remove last input highlight after submission
   const slots = row.querySelectorAll(".guess-slot");
   slots.forEach((slot) => slot.classList.remove("last"));
 
@@ -143,7 +138,7 @@ function checkGuess() {
     endGame();
   } else {
     attempt++;
-    updateRowStates(); // Update active row
+    updateRowStates();
   }
 }
 
@@ -172,11 +167,11 @@ function calculateFeedback() {
 function updateRowStates() {
   document.querySelectorAll(".row").forEach((row, index) => {
     if (index < attempt) {
-      row.classList.remove("inactive"); // Keep tried rows visible
+      row.classList.remove("inactive");
     } else if (index === attempt) {
-      row.classList.remove("inactive"); // Highlight current row
+      row.classList.remove("inactive");
     } else {
-      row.classList.add("inactive"); // Gray out rows not yet reachable
+      row.classList.add("inactive");
     }
   });
 }
@@ -208,6 +203,6 @@ function resetGame() {
   attempt = 0;
   gameEnded = false;
   initializeBoard();
-  updateRowStates(); // Reset row visibility
-  updateSubmitButtonState(); // Reset button state
+  updateRowStates();
+  updateSubmitButtonState();
 }
